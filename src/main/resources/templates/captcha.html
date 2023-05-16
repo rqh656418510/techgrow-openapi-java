@@ -1,0 +1,88 @@
+<!--/*-->
+  ~ The Java implementation of TechGrow openapi.
+  ~ Copyright (C) 2023-present, open.techgrow.cn
+
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU Affero General Public License for more details.
+
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+<!--*/-->
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>TechGrow OpenApi | 获取验证码</title>
+    <style type="text/css">
+        body {
+            font-family: Helvetica Neue,Helvetica,PingFang SC,Hiragino Sans GB,Microsoft YaHei,Arial,sans-serif;
+            font-size: 14px;
+            line-height: 1.15;
+            color: #303133;
+            background-color: #fff;
+        }
+        .content {
+            margin-top: 50px;
+            text-align: center;
+        }
+        .error {
+            color: #DC143C;
+        }
+        .captcha {
+            margin-top: 10px;
+            color: #1E90FF;
+        }
+        .expire {
+            margin-top: 10px;
+        }
+        .support {
+            margin-top: 10px;
+            color: #808080;
+        }
+        a {
+            color: #65a5f9;
+            text-decoration: none;
+            background-color: transparent;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <div th:if="${result.code != 0}">
+            <div class="error">
+                <h2>
+                    <span>[[${result.msg}]]</span>
+                </h2>
+            </div>
+        </div>
+        <div th:unless="${result.code != 0}">
+            <div class="title">
+                <h2>
+                    <span>验证码</span>
+                </h2>
+            </div>
+            <div class="captcha">
+                <h2>
+                    <span>[[${result.data.code}]]</span>
+                </h2>
+            </div>
+            <div class="expire">
+                <span>5 分钟后失效, 请尽快使用!</span>
+            </div>
+        </div>
+        <div class="support">
+            <span>该工具由 <a href="https://open.techgrow.cn" target="_blank">TechGrow</a> 免费提供</span>
+        </div>
+    </div>
+</body>
+</html>

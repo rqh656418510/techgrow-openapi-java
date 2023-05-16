@@ -1,0 +1,8 @@
+server:
+  port: ${PORT:8080}
+
+spring:
+  profiles:
+    active: ${DB_TYPE:h2}
+  application:
+    name: techgrow-openapi-java

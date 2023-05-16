@@ -1,0 +1,68 @@
+spring:
+  jackson:
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
+  thymeleaf:
+    enabled: true
+    cache: false
+    mode: HTML
+    suffix: .html
+    encoding: UTF-8
+    prefix: classpath:/templates/
+    check-template-location: true
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: ${DB_URL:jdbc:h2:file:./db/readmore;MODE=MySQL;AUTO_SERVER=TRUE;DB_CLOSE_DELAY=-1;AUTO_RECONNECT=TRUE}
+    username: ${DB_USER:root}
+    password: ${DB_PASSWORD:123456}
+  sql:
+    init:
+      separator: ;
+      encoding: UTF-8
+      platform: h2
+      mode: always
+      continue-on-error: false
+      schema-locations:
+        - classpath:db/schema_h2.sql
+  h2:
+    console:
+      enabled: ${DB_CONSOLE_ENABLED:false}
+      settings:
+        path: ${DB_CONSOLE_PATH:/h2-console}
+        trace: false
+        web-allow-others: ${DB_CONSOLE_ALLOW_OTHERS:false}
+
+mybatis-plus:
+  mapper-locations: classpath*:/mapper/**/*.xml
+  type-aliases-package: org.techgrow.*.entity
+  global-config:
+    db-config:
+      id-type: AUTO
+    banner: false
+  configuration:
+    map-underscore-to-camel-case: true
+    call-setters-on-nulls: true
+    cache-enabled: ${ORM_CACHE_ENABLED:false}
+    jdbc-type-for-null: 'null'
+    default-enum-type-handler: org.techgrow.openapi.handler.AutoGenericEnumTypeHandler
+
+techgrow:
+  openapi:
+    security:
+      allow-cors: ${ALLOW_CORS:true}
+    readmore:
+      blog-id: ${BLOG_ID:}
+      captcha:
+        length: ${CAPTCHA_LENGTH:6}
+        expires-value: ${CAPTCHA_EXPIRES_VALUE:5}
+        expires-unit: ${CAPTCHA_EXPIRES_UNIT:Minutes}
+        reply-keyword: ${CAPTCHA_REPLY_KEYWORD:验证码}
+        api-address: ${CAPTCHA_API_ADDRESS:}
+      token:
+        expire-days: ${TOKEN_EXPIRE_DAYS:365}
+        sign-key: ${TOKEN_SIGN_KEY:en93yzim2z8j3fdikebrujqdldb0b1mutay5rwmvagimmf8k2fe0d32d53gf8vw11kwujw72w4xu96kssrjmfd}
+    wechat:
+      app-id: ${WECHAT_APP_ID:}
+      app-secret: ${WECHAT_APP_SECRET:}
+      app-token: ${WECHAT_APP_TOKEN:}
+      encoding-aes-key: ${WECHAT_ENCODING_AES_KEY:}
