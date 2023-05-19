@@ -22,8 +22,8 @@
 ### 周边生态
 
 - [Hexo 引流插件](https://github.com/rqh656418510/hexo-readmore)
-- [VuePress 1 引流插件](https://github.com/rqh656418510/vuepress-plugin-readmore-popular)
-- [VuePress 2 引流插件](https://github.com/rqh656418510/vuepress-plugin-readmore-popular-next)
+- [VuePress v1 引流插件](https://github.com/rqh656418510/vuepress-plugin-readmore-popular)
+- [VuePress v2 引流插件](https://github.com/rqh656418510/vuepress-plugin-readmore-popular-next)
 
 ### LICENSE
 
