@@ -1,4 +1,8 @@
 spring:
+  security:
+    user:
+      name: ${SECURITY_NAME:admin}
+      password: ${SECURITY_PASSWORD:123456}
   jackson:
     time-zone: GMT+8
     date-format: yyyy-MM-dd HH:mm:ss

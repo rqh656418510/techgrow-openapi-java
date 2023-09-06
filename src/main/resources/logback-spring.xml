@@ -19,14 +19,14 @@
 
 <configuration debug="false" scan="false">
 
-    <!-- 日志路径 -->
+    <!-- Log path -->
     <springProperty scop="context" name="spring.application.name" source="spring.application.name" defaultValue=""/>
     <property name="log.path" value="logs/${spring.application.name}"/>
 
-    <!-- 彩色日志格式 -->
+    <!-- Color log format -->
     <property name="CONSOLE_LOG_PATTERN" value="${CONSOLE_LOG_PATTERN:-%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr(${PID:- }){magenta} %clr(---){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}}"/>
 
-    <!-- 彩色日志依赖的渲染类 -->
+    <!-- Color log dependent rendering classes -->
     <conversionRule conversionWord="clr" converterClass="org.springframework.boot.logging.logback.ColorConverter"/>
     <conversionRule conversionWord="wex" converterClass="org.springframework.boot.logging.logback.WhitespaceThrowableProxyConverter"/>
     <conversionRule conversionWord="wEx" converterClass="org.springframework.boot.logging.logback.ExtendedWhitespaceThrowableProxyConverter"/>
@@ -35,6 +35,7 @@
     <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
             <pattern>${CONSOLE_LOG_PATTERN}</pattern>
+            <charset>UTF-8</charset>
         </encoder>
     </appender>
 
@@ -48,7 +49,11 @@
         </rollingPolicy>
         <encoder>
             <pattern>%date [%thread] %-5level [%logger{50}] %file:%line - %msg%n</pattern>
+            <charset>UTF-8</charset>
         </encoder>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>DEBUG</level>
+        </filter>
     </appender>
 
     <!-- Log file info output -->
@@ -61,7 +66,28 @@
         </rollingPolicy>
         <encoder>
             <pattern>%date [%thread] %-5level [%logger{50}] %file:%line - %msg%n</pattern>
+            <charset>UTF-8</charset>
         </encoder>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>INFO</level>
+        </filter>
+    </appender>
+
+    <!-- Log file warn output -->
+    <appender name="warn" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log.path}/warn.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${log.path}/%d{yyyy-MM}/warn.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
+            <maxFileSize>50MB</maxFileSize>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%date [%thread] %-5level [%logger{50}] %file:%line - %msg%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>WARN</level>
+        </filter>
     </appender>
 
     <!-- Log file error output -->
@@ -74,6 +100,7 @@
         </rollingPolicy>
         <encoder>
             <pattern>%date [%thread] %-5level [%logger{50}] %file:%line - %msg%n</pattern>
+            <charset>UTF-8</charset>
         </encoder>
         <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
             <level>ERROR</level>
@@ -85,6 +112,7 @@
         <appender-ref ref="console"/>
         <appender-ref ref="debug"/>
         <appender-ref ref="info"/>
+        <appender-ref ref="warn"/>
         <appender-ref ref="error"/>
     </root>
 
