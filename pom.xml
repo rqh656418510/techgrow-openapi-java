@@ -24,7 +24,7 @@
     <groupId>org.techgrow</groupId>
     <artifactId>techgrow-openapi-java</artifactId>
     <packaging>jar</packaging>
-    <version>1.0.11</version>
+    <version>1.0.12</version>
     <url>https://open.techgrow.cn</url>
     <inceptionYear>2023</inceptionYear>
     <description>TechGrow 开放平台的 OpenAPI 实现</description>
